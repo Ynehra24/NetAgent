@@ -1,0 +1,35 @@
+{
+  "budget_tier": {
+    "model": "TP-Link EAP225 V3",
+    "power_w": 12.6,
+    "max_users": 60,
+    "frequency": ["2.4GHz", "5GHz"],
+    "base_price_usd": 60
+  },
+  "mid_tier": {
+    "model": "Ubiquiti UniFi U6 Lite",
+    "power_w": 12.0,
+    "max_users": 300,
+    "frequency": ["2.4GHz", "5GHz"],
+    "base_price_usd": 99
+  },
+  "premium_tier": {
+    "model": "Ubiquiti UniFi U6 Pro",
+    "power_w": 13.0,
+    "max_users": 300,
+    "frequency": ["2.4GHz", "5GHz"],
+    "base_price_usd": 149
+  },
+  "switch_budget": {
+    "model": "Netgear GS308P 8-Port PoE",
+    "power_w": 60.0,
+    "poe_ports": 4,
+    "base_price_usd": 55
+  },
+  "switch_premium": {
+    "model": "Ubiquiti UniFi Switch Lite 16 PoE",
+    "power_w": 45.0,
+    "poe_ports": 8,
+    "base_price_usd": 199
+  }
+}
