@@ -2,23 +2,38 @@
   "budget_tier": {
     "model": "TP-Link EAP225 V3",
     "power_w": 12.6,
+    "tx_power_dbm": 23,
+    "antenna_gain_dbi": 4.0,
     "max_users": 60,
     "frequency": ["2.4GHz", "5GHz"],
-    "base_price_usd": 60
+    "base_price_usd": 60,
+    "max_indoor_range_m": 15,
+    "wifi_generation": "Wi-Fi 5",
+    "max_throughput_mbps": 1317
   },
   "mid_tier": {
     "model": "Ubiquiti UniFi U6 Lite",
     "power_w": 12.0,
+    "tx_power_dbm": 26,
+    "antenna_gain_dbi": 5.5,
     "max_users": 300,
     "frequency": ["2.4GHz", "5GHz"],
-    "base_price_usd": 99
+    "base_price_usd": 99,
+    "max_indoor_range_m": 20,
+    "wifi_generation": "Wi-Fi 6",
+    "max_throughput_mbps": 1500
   },
   "premium_tier": {
     "model": "Ubiquiti UniFi U6 Pro",
     "power_w": 13.0,
+    "tx_power_dbm": 27,
+    "antenna_gain_dbi": 6.0,
     "max_users": 300,
-    "frequency": ["2.4GHz", "5GHz"],
-    "base_price_usd": 149
+    "frequency": ["2.4GHz", "5GHz", "6GHz"],
+    "base_price_usd": 149,
+    "max_indoor_range_m": 25,
+    "wifi_generation": "Wi-Fi 6",
+    "max_throughput_mbps": 5300
   },
   "switch_budget": {
     "model": "Netgear GS308P 8-Port PoE",
@@ -31,5 +46,15 @@
     "power_w": 45.0,
     "poe_ports": 8,
     "base_price_usd": 199
+  },
+  "attenuation_db": {
+    "drywall":          3,
+    "glass":            2,
+    "brick":            8,
+    "concrete":        15,
+    "wood_door":        3,
+    "metal_shelving":  20,
+    "elevator_shaft":  30,
+    "unknown":          5
   }
 }

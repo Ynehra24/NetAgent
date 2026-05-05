@@ -6,20 +6,40 @@ def extract_json_from_markdown(text: str) -> Dict[str, Any]:
     """
     Extracts a JSON object from a markdown string (e.g., inside ```json ... ``` blocks).
     If no markdown block is found, it attempts to parse the raw string.
+    If the response is truncated, it walks back from the end to find the last parseable sub-object.
     """
-    # Try to find a JSON block using regex
-    pattern = r"```json\s*(.*?)\s*```"
-    match = re.search(pattern, text, re.DOTALL)
-    
+    # Strategy 1: Strip markdown fences (handles ```json and plain ```)
+    pattern = r"```(?:json)?\s*([\s\S]*?)\s*```"
+    match = re.search(pattern, text)
     json_str = match.group(1) if match else text
-
-    # Strip any leading/trailing whitespace that might cause issues
     json_str = json_str.strip()
 
-    # Attempt to parse
-    try:
-        data = json.loads(json_str)
-        return data
-    except json.JSONDecodeError as e:
-        # Provide helpful context for debugging
-        raise ValueError(f"Failed to parse JSON. Extracted string was:\n{json_str}\n\nOriginal Text:\n{text}") from e
+    # Strategy 2: Find the first { to skip any preamble text
+    start = json_str.find("{")
+    if start != -1:
+        json_str = json_str[start:]
+
+    for end in range(len(json_str), 0, -1):
+        candidate = json_str[:end]
+        last_brace = candidate.rfind("}")
+        if last_brace == -1:
+            continue
+        candidate = candidate[:last_brace + 1]
+        
+        # Try raw
+        try:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            pass
+            
+        # Try appending common missing closures
+        for suffix in ["}", "]}", "]}}", "]}]}"]:
+            try:
+                return json.loads(candidate + suffix)
+            except json.JSONDecodeError:
+                continue
+
+    raise ValueError(
+        f"Failed to parse any valid JSON from response.\n\n"
+        f"Original Text (last 500 chars):\n{text[-500:]}"
+    )

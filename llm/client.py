@@ -1,16 +1,28 @@
 import requests
 import base64
+import time
 from typing import Dict, Any, Optional
-from basefiles.config import GEMINI_API_KEY, API_URL, MAX_TOKENS, TEMPERATURE
+from basefiles.config import (
+    GEMINI_API_KEY, GEMINI_API_URL, FALLBACK_GEMINI_API_URL,
+    GROQ_API_KEY, GROQ_MODEL, GROQ_FAST_MODEL, GROQ_API_URL,
+    MAX_TOKENS, GEMINI_MAX_TOKENS, TEMPERATURE, GROQ_CALL_DELAY
+)
 from basefiles.logger import get_logger
 
 logger = get_logger(__name__) if 'get_logger' in globals() else None
 
+MAX_RETRIES = 5
+RETRY_DELAY = 5.0  # seconds (doubles each retry)
+
+
 class VisionClient:
+    """
+    Uses the Gemini API for image analysis (floor plan extraction).
+    Groq does not have a vision model, so Gemini handles this one step.
+    """
     def __init__(self):
         if not GEMINI_API_KEY:
             raise ValueError("GEMINI_API_KEY is not set in the environment variables.")
-        # The key is passed in the URL for Gemini REST API, not headers
         self.headers = {
             "Content-Type": "application/json"
         }
@@ -48,7 +60,7 @@ class VisionClient:
             ],
             "generationConfig": {
                 "temperature": TEMPERATURE,
-                "maxOutputTokens": MAX_TOKENS,
+                "maxOutputTokens": GEMINI_MAX_TOKENS,
             }
         }
 
@@ -57,10 +69,27 @@ class VisionClient:
         else:
             print(f"Sending request to Gemini API for image {image_path}")
 
-        url_with_key = f"{API_URL}?key={GEMINI_API_KEY}"
-        response = requests.post(url_with_key, headers=self.headers, json=gemini_payload)
+        url_with_key = f"{GEMINI_API_URL}?key={GEMINI_API_KEY}"
+        fallback_url_with_key = f"{FALLBACK_GEMINI_API_URL}?key={GEMINI_API_KEY}"
         
-        if response.status_code != 200:
+        current_url = url_with_key
+        for attempt in range(MAX_RETRIES):
+            response = requests.post(current_url, headers=self.headers, json=gemini_payload)
+            if response.status_code == 200:
+                break
+                
+            if response.status_code == 503 and current_url == url_with_key:
+                if logger:
+                    logger.warning(f"Gemini API 503 error on primary model. Switching to fallback model...")
+                current_url = fallback_url_with_key
+                continue
+                
+            if response.status_code in (429, 503) and attempt < MAX_RETRIES - 1:
+                wait = RETRY_DELAY * (2 ** attempt)
+                if logger:
+                    logger.warning(f"Gemini API transient error {response.status_code}. Retrying in {wait}s (attempt {attempt+1}/{MAX_RETRIES})...")
+                time.sleep(wait)
+                continue
             error_msg = f"API Request failed with status code {response.status_code}: {response.text}"
             if logger:
                 logger.error(error_msg)
@@ -74,51 +103,72 @@ class VisionClient:
             if logger:
                 logger.error(error_msg)
             raise Exception(error_msg) from e
+
 
 class TextClient:
+    """
+    Uses the Groq API for all text generation (justifications, variants, specs RAG).
+    Groq provides fast inference on Llama 3.1 70B via an OpenAI-compatible endpoint.
+    """
     def __init__(self):
-        if not GEMINI_API_KEY:
-            raise ValueError("GEMINI_API_KEY is not set in the environment variables.")
+        if not GROQ_API_KEY:
+            raise ValueError("GROQ_KEY is not set in the environment variables.")
         self.headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {GROQ_API_KEY}"
         }
 
-    def generate_text(self, system_prompt: str, user_prompt: str) -> str:
+    def generate_text(self, system_prompt: str, user_prompt: str, fast: bool = False) -> str:
         """
-        Sends the text prompts to the Gemini API and returns the text response.
+        Sends system + user prompts to the Groq API and returns the text response.
+        fast=True  → llama-3.1-8b-instant (separate quota, for cheap calls like justifications/specs)
+        fast=False → llama-3.3-70b-versatile (quality model, for variants and summary)
+        Handles 429 TPM/TPD limits by parsing the suggested wait time from the error.
         """
-        gemini_payload = {
-            "contents": [
-                {
-                    "parts": [
-                        {"text": f"{system_prompt}\n\n{user_prompt}"}
-                    ]
-                }
-            ],
-            "generationConfig": {
-                "temperature": TEMPERATURE,
-                "maxOutputTokens": MAX_TOKENS,
-            }
-        }
+        import re
+        
+        model = GROQ_FAST_MODEL if fast else GROQ_MODEL
 
         if logger:
-            logger.info("Sending text request to Gemini API")
-        
-        url_with_key = f"{API_URL}?key={GEMINI_API_KEY}"
-        response = requests.post(url_with_key, headers=self.headers, json=gemini_payload)
-        
-        if response.status_code != 200:
-            error_msg = f"API Request failed with status code {response.status_code}: {response.text}"
+            logger.info(f"Sending text request to Groq API ({'fast: ' + GROQ_FAST_MODEL if fast else GROQ_MODEL})")
+
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            "temperature": TEMPERATURE,
+            "max_tokens": MAX_TOKENS,
+        }
+
+        max_attempts = 5
+        response = None
+        for attempt in range(max_attempts):
+            response = requests.post(GROQ_API_URL, headers=self.headers, json=payload)
+            if response.status_code == 200:
+                break
+            if response.status_code in (429, 413, 503) and attempt < max_attempts - 1:
+                error_text = response.text
+                match = re.search(r'try again in (\d+\.?\d*)s', error_text)
+                if match:
+                    wait = float(match.group(1)) + 2
+                else:
+                    wait = 20 * (attempt + 1)
+                if logger:
+                    logger.warning(f"Groq API rate limit ({response.status_code}). Waiting {wait:.0f}s before retry {attempt+1}/{max_attempts}...")
+                time.sleep(wait)
+                continue
+            error_msg = f"Groq API failed with status code {response.status_code}: {response.text}"
             if logger:
                 logger.error(error_msg)
             raise Exception(error_msg)
 
         data = response.json()
         try:
-            return data["candidates"][0]["content"]["parts"][0]["text"]
+            return data["choices"][0]["message"]["content"]
         except (KeyError, IndexError) as e:
-            error_msg = f"Unexpected response format from API: {data}"
+            error_msg = f"Unexpected response format from Groq API: {data}"
             if logger:
                 logger.error(error_msg)
             raise Exception(error_msg) from e
-
