@@ -176,6 +176,10 @@ No LangChain, LlamaIndex, or agent frameworks are used. The entire chain is buil
 
 <img width="1470" height="956" alt="Screenshot 2026-05-05 at 11 05 10 PM" src="https://github.com/user-attachments/assets/07808128-38a4-4b6b-8430-bfa7b7c10e9f" />
 
+<img width="1470" height="956" alt="Screenshot 2026-05-05 at 11 06 47 PM" src="https://github.com/user-attachments/assets/685c65f8-ebf3-4ffc-ae64-943f05717250" />
+
+<img width="1470" height="956" alt="Screenshot 2026-05-05 at 11 06 33 PM" src="https://github.com/user-attachments/assets/59cfdc92-8575-48d0-b1fc-0f02e8fab761" />
+
 ## Limitations
 
 - **Gemini free tier** has rate limits — heavy testing can exhaust it
