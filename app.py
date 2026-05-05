@@ -364,8 +364,7 @@ elif run_btn and uploaded_file:
         st.markdown("### RF Coverage Heatmap")
         st.caption("Green = excellent (≥−50 dBm) · Yellow = good · Orange = weak · Red = no signal · Grey = excluded zone")
         if heatmap_path and os.path.exists(heatmap_path):
-            heatmap_img = Image.open(heatmap_path)
-            st.image(heatmap_img, use_container_width=True)
+            st.image(heatmap_path, use_column_width=True)
             with open(heatmap_path, "rb") as f:
                 st.download_button("📥 Download Heatmap (PNG)", f,
                                    file_name="rf_heatmap.png", mime="image/png")
