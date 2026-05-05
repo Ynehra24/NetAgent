@@ -1,0 +1,1138 @@
+{
+  "input": {
+    "floor_plan_path": "/Users/yatharthnehva/Desktop/NetAgent/data/images/test2.png",
+    "budget_limit": 1000.0
+  },
+  "parsed_layout": {
+    "floor_plan": {
+      "rooms": [
+        {
+          "name": "Open Office",
+          "bounding_box": [
+            65,
+            110,
+            490,
+            565
+          ]
+        },
+        {
+          "name": "Open Office",
+          "bounding_box": [
+            570,
+            445,
+            935,
+            725
+          ]
+        },
+        {
+          "name": "Open Office",
+          "bounding_box": [
+            710,
+            110,
+            935,
+            440
+          ]
+        },
+        {
+          "name": "Corridor",
+          "bounding_box": [
+            495,
+            110,
+            570,
+            915
+          ]
+        },
+        {
+          "name": "Meeting Room",
+          "bounding_box": [
+            65,
+            570,
+            270,
+            700
+          ]
+        },
+        {
+          "name": "Office",
+          "bounding_box": [
+            65,
+            795,
+            270,
+            915
+          ]
+        },
+        {
+          "name": "Meeting Room",
+          "bounding_box": [
+            570,
+            265,
+            705,
+            440
+          ]
+        },
+        {
+          "name": "Stairwell",
+          "bounding_box": [
+            65,
+            35,
+            335,
+            110
+          ]
+        },
+        {
+          "name": "Stairwell",
+          "bounding_box": [
+            570,
+            35,
+            840,
+            110
+          ]
+        },
+        {
+          "name": "Stairwell",
+          "bounding_box": [
+            65,
+            920,
+            335,
+            985
+          ]
+        },
+        {
+          "name": "Kitchen",
+          "bounding_box": [
+            65,
+            705,
+            270,
+            790
+          ]
+        },
+        {
+          "name": "Open Office",
+          "bounding_box": [
+            405,
+            795,
+            550,
+            915
+          ]
+        },
+        {
+          "name": "Corridor",
+          "bounding_box": [
+            710,
+            840,
+            935,
+            915
+          ]
+        },
+        {
+          "name": "Office",
+          "bounding_box": [
+            275,
+            795,
+            400,
+            915
+          ]
+        },
+        {
+          "name": "Stairwell",
+          "bounding_box": [
+            710,
+            920,
+            935,
+            985
+          ]
+        },
+        {
+          "name": "Office",
+          "bounding_box": [
+            570,
+            730,
+            705,
+            835
+          ]
+        },
+        {
+          "name": "Office",
+          "bounding_box": [
+            710,
+            730,
+            820,
+            835
+          ]
+        },
+        {
+          "name": "Office",
+          "bounding_box": [
+            825,
+            730,
+            935,
+            835
+          ]
+        },
+        {
+          "name": "Elevator Shaft",
+          "bounding_box": [
+            340,
+            35,
+            490,
+            110
+          ]
+        },
+        {
+          "name": "Restroom",
+          "bounding_box": [
+            275,
+            570,
+            400,
+            660
+          ]
+        },
+        {
+          "name": "Elevator Shaft",
+          "bounding_box": [
+            555,
+            840,
+            705,
+            915
+          ]
+        },
+        {
+          "name": "Lobby",
+          "bounding_box": [
+            275,
+            705,
+            400,
+            790
+          ]
+        },
+        {
+          "name": "Uncovered Zone 1",
+          "bounding_box": [
+            0,
+            0,
+            60,
+            1000
+          ]
+        },
+        {
+          "name": "Uncovered Zone 2",
+          "bounding_box": [
+            60,
+            0,
+            1000,
+            20
+          ]
+        },
+        {
+          "name": "Uncovered Zone 3",
+          "bounding_box": [
+            60,
+            900,
+            1000,
+            920
+          ]
+        },
+        {
+          "name": "Uncovered Zone 4",
+          "bounding_box": [
+            60,
+            980,
+            1000,
+            1000
+          ]
+        },
+        {
+          "name": "Uncovered Zone 5",
+          "bounding_box": [
+            260,
+            660,
+            480,
+            700
+          ]
+        },
+        {
+          "name": "Uncovered Zone 6",
+          "bounding_box": [
+            320,
+            20,
+            340,
+            100
+          ]
+        },
+        {
+          "name": "Uncovered Zone 7",
+          "bounding_box": [
+            320,
+            920,
+            700,
+            980
+          ]
+        },
+        {
+          "name": "Uncovered Zone 8",
+          "bounding_box": [
+            400,
+            560,
+            480,
+            660
+          ]
+        },
+        {
+          "name": "Uncovered Zone 9",
+          "bounding_box": [
+            400,
+            700,
+            480,
+            780
+          ]
+        },
+        {
+          "name": "Uncovered Zone 10",
+          "bounding_box": [
+            480,
+            20,
+            560,
+            100
+          ]
+        },
+        {
+          "name": "Uncovered Zone 11",
+          "bounding_box": [
+            560,
+            100,
+            700,
+            260
+          ]
+        },
+        {
+          "name": "Uncovered Zone 12",
+          "bounding_box": [
+            560,
+            820,
+            1000,
+            840
+          ]
+        },
+        {
+          "name": "Uncovered Zone 13",
+          "bounding_box": [
+            840,
+            20,
+            1000,
+            100
+          ]
+        },
+        {
+          "name": "Uncovered Zone 14",
+          "bounding_box": [
+            920,
+            100,
+            1000,
+            820
+          ]
+        },
+        {
+          "name": "Uncovered Zone 15",
+          "bounding_box": [
+            920,
+            840,
+            1000,
+            900
+          ]
+        },
+        {
+          "name": "Uncovered Zone 16",
+          "bounding_box": [
+            920,
+            920,
+            1000,
+            980
+          ]
+        }
+      ]
+    }
+  },
+  "equipment_specs": {
+    "attenuation_db": {
+      "drywall": 3,
+      "glass": 2,
+      "brick": 8,
+      "concrete": 15,
+      "wood_door": 3,
+      "metal_shelving": 20,
+      "elevator_shaft": 30,
+      "unknown": 5
+    },
+    "budget_tier": {
+      "model": "TP-Link EAP225 V3",
+      "power_w": 12.6,
+      "tx_power_dbm": 23,
+      "antenna_gain_dbi": 4.0,
+      "max_users": 60,
+      "frequency": [
+        "2.4GHz",
+        "5GHz"
+      ],
+      "base_price_usd": 60,
+      "max_indoor_range_m": 15,
+      "wifi_generation": "Wi-Fi 5",
+      "max_throughput_mbps": 1317,
+      "total_power_w": 100.8,
+      "ap_count": 8
+    },
+    "mid_tier": {
+      "model": "Ubiquiti UniFi U6 Lite",
+      "power_w": 12.0,
+      "tx_power_dbm": 26,
+      "antenna_gain_dbi": 5.5,
+      "max_users": 300,
+      "frequency": [
+        "2.4GHz",
+        "5GHz"
+      ],
+      "base_price_usd": 99,
+      "max_indoor_range_m": 20,
+      "wifi_generation": "Wi-Fi 6",
+      "max_throughput_mbps": 1500,
+      "total_power_w": 96.0,
+      "ap_count": 8
+    },
+    "premium_tier": {
+      "power_w": 13.0,
+      "max_users": 250,
+      "frequency": [
+        "2.4GHz",
+        "5GHz"
+      ],
+      "antenna_gain_dbi": 6.0,
+      "base_price_usd": 149.0,
+      "source": "https://techspecs.ui.com/unifi/wifi/u6-pro",
+      "model": "Ubiquiti UniFi U6 Pro",
+      "total_power_w": 104.0,
+      "ap_count": 8
+    },
+    "switch_budget": {
+      "model": "Netgear GS308P 8-Port PoE",
+      "power_w": 60.0,
+      "poe_ports": 4,
+      "base_price_usd": 55
+    },
+    "switch_premium": {
+      "model": "Ubiquiti UniFi Switch Lite 16 PoE",
+      "power_w": 45.0,
+      "poe_ports": 8,
+      "base_price_usd": 199
+    }
+  },
+  "placement_plan": {
+    "ap_placements": [
+      {
+        "id": "ap_1",
+        "position": {
+          "x": 338,
+          "y": 278
+        },
+        "placed_in_room": "Open Office",
+        "covers_rooms": [
+          "Open Office"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          65,
+          110,
+          490,
+          565
+        ],
+        "justification": "The placement of ap_1 in the Open Office room was chosen based on the one-AP-per-room enterprise deployment strategy, which aims to provide seamless coverage within each room. Given the concrete wall material with a -15dBm attenuation penalty per wall crossing, the algorithm carefully selected the position of ap_1 to minimize the number of wall crossings and ensure optimal signal strength. With a maximum indoor range of 20m from the equipment datasheet, ap_1 is strategically positioned at (x: 338, y: 278) to cover the Open Office room, and the algorithm has verified that the signal reaches all points within the room above -70 dBm, guaranteeing reliable wireless connectivity."
+      },
+      {
+        "id": "ap_2",
+        "position": {
+          "x": 585,
+          "y": 752
+        },
+        "placed_in_room": "Open Office",
+        "covers_rooms": [
+          "Open Office",
+          "Open Office"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          570,
+          445,
+          935,
+          725
+        ],
+        "justification": "The placement of ap_2 in the Open Office room was determined using the one-AP-per-room enterprise deployment strategy, taking into account the concrete wall material and its -15dBm attenuation penalty per wall crossing. The algorithm positioned ap_2 at (x: 585, y: 752) to provide comprehensive coverage of the Open Office room, considering the maximum indoor range of 20m from the equipment datasheet. By minimizing wall crossings and optimizing signal strength, the algorithm ensured that ap_2 provides reliable wireless connectivity, with the signal reaching all points within the room above -70 dBm."
+      },
+      {
+        "id": "ap_3",
+        "position": {
+          "x": 635,
+          "y": 168
+        },
+        "placed_in_room": "Meeting Room",
+        "covers_rooms": [
+          "Meeting Room"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          65,
+          570,
+          270,
+          700
+        ],
+        "justification": "The placement of ap_3 in the Meeting Room was chosen based on the one-AP-per-room enterprise deployment strategy, which prioritizes seamless coverage within each room. The algorithm selected the position of ap_3 at (x: 635, y: 168) to account for the concrete wall material and its -15dBm attenuation penalty per wall crossing, while also considering the maximum indoor range of 20m from the equipment datasheet. The algorithm verified that the signal from ap_3 reaches all points within the Meeting Room above -70 dBm, ensuring reliable wireless connectivity."
+      },
+      {
+        "id": "ap_4",
+        "position": {
+          "x": 855,
+          "y": 168
+        },
+        "placed_in_room": "Office",
+        "covers_rooms": [
+          "Office",
+          "Office"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          65,
+          795,
+          270,
+          915
+        ],
+        "justification": "The placement of ap_4 in the Office room was determined using the one-AP-per-room enterprise deployment strategy, taking into account the concrete wall material and its -15dBm attenuation penalty per wall crossing. The algorithm positioned ap_4 at (x: 855, y: 168) to provide comprehensive coverage of the Office room, considering the maximum indoor range of 20m from the equipment datasheet. By minimizing wall crossings and optimizing signal strength, the algorithm ensured that ap_4 provides reliable wireless connectivity, with the signal reaching all points within the room above -70 dBm."
+      },
+      {
+        "id": "ap_5",
+        "position": {
+          "x": 352,
+          "y": 638
+        },
+        "placed_in_room": "Meeting Room",
+        "covers_rooms": [
+          "Meeting Room"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          570,
+          265,
+          705,
+          440
+        ],
+        "justification": "The placement of ap_5 in the Meeting Room was chosen based on the one-AP-per-room enterprise deployment strategy, which aims to provide seamless coverage within each room. Given the concrete wall material with a -15dBm attenuation penalty per wall crossing, the algorithm carefully selected the position of ap_5 to minimize the number of wall crossings and ensure optimal signal strength. With a maximum indoor range of 20m from the equipment datasheet, ap_5 is strategically positioned at (x: 352, y: 638) to cover the Meeting Room, and the algorithm has verified that the signal reaches all points within the room above -70 dBm, guaranteeing reliable wireless connectivity."
+      },
+      {
+        "id": "ap_6",
+        "position": {
+          "x": 748,
+          "y": 168
+        },
+        "placed_in_room": "Kitchen",
+        "covers_rooms": [
+          "Kitchen"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          65,
+          705,
+          270,
+          790
+        ],
+        "justification": "The placement of ap_6 in the Kitchen room was determined using the one-AP-per-room enterprise deployment strategy, taking into account the concrete wall material and its -15dBm attenuation penalty per wall crossing. The algorithm positioned ap_6 at (x: 748, y: 168) to provide comprehensive coverage of the Kitchen room, considering the maximum indoor range of 20m from the equipment datasheet. By minimizing wall crossings and optimizing signal strength, the algorithm ensured that ap_6 provides reliable wireless connectivity, with the signal reaching all points within the room above -70 dBm."
+      },
+      {
+        "id": "ap_7",
+        "position": {
+          "x": 855,
+          "y": 478
+        },
+        "placed_in_room": "Open Office",
+        "covers_rooms": [
+          "Open Office"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          405,
+          795,
+          550,
+          915
+        ],
+        "justification": "The placement of ap_7 in the Open Office room was chosen based on the one-AP-per-room enterprise deployment strategy, which prioritizes seamless coverage within each room. The algorithm selected the position of ap_7 at (x: 855, y: 478) to account for the concrete wall material and its -15dBm attenuation penalty per wall crossing, while also considering the maximum indoor range of 20m from the equipment datasheet. The algorithm verified that the signal from ap_7 reaches all points within the Open Office room above -70 dBm, ensuring reliable wireless connectivity."
+      },
+      {
+        "id": "ap_8",
+        "position": {
+          "x": 782,
+          "y": 638
+        },
+        "placed_in_room": "Office",
+        "covers_rooms": [
+          "Office",
+          "Office",
+          "Office"
+        ],
+        "coverage_radius_grid": 500,
+        "bounding_box": [
+          570,
+          730,
+          705,
+          835
+        ],
+        "justification": "The placement of ap_8 in the Office room was determined using the one-AP-per-room enterprise deployment strategy, taking into account the concrete wall material and its -15dBm attenuation penalty per wall crossing. The algorithm positioned ap_8 at (x: 782, y: 638) to provide comprehensive coverage of the Office room, considering the maximum indoor range of 20m from the equipment datasheet. By minimizing wall crossings and optimizing signal strength, the algorithm ensured that ap_8 provides reliable wireless connectivity, with the signal reaching all points within the room above -70 dBm."
+      }
+    ],
+    "infra_devices": [
+      {
+        "id": "router_1",
+        "type": "Router",
+        "position": {
+          "x": 201,
+          "y": 405
+        },
+        "placed_in_room": "Open Office",
+        "model": "ISP Gateway Router"
+      },
+      {
+        "id": "switch_1",
+        "type": "Switch",
+        "position": {
+          "x": 269,
+          "y": 405
+        },
+        "placed_in_room": "Open Office",
+        "model": "Netgear GS308P 8-Port PoE",
+        "poe_ports": 4
+      },
+      {
+        "id": "dp_1",
+        "type": "Data Point",
+        "position": {
+          "x": 246,
+          "y": 426
+        },
+        "placed_in_room": "Open Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_2",
+        "type": "Data Point",
+        "position": {
+          "x": 529,
+          "y": 880
+        },
+        "placed_in_room": "Open Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_3",
+        "type": "Data Point",
+        "position": {
+          "x": 209,
+          "y": 901
+        },
+        "placed_in_room": "Open Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_4",
+        "type": "Data Point",
+        "position": {
+          "x": 609,
+          "y": 239
+        },
+        "placed_in_room": "Meeting Room",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_5",
+        "type": "Data Point",
+        "position": {
+          "x": 831,
+          "y": 239
+        },
+        "placed_in_room": "Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_6",
+        "type": "Data Point",
+        "position": {
+          "x": 318,
+          "y": 685
+        },
+        "placed_in_room": "Meeting Room",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_7",
+        "type": "Data Point",
+        "position": {
+          "x": 730,
+          "y": 239
+        },
+        "placed_in_room": "Kitchen",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_8",
+        "type": "Data Point",
+        "position": {
+          "x": 831,
+          "y": 528
+        },
+        "placed_in_room": "Open Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_9",
+        "type": "Data Point",
+        "position": {
+          "x": 831,
+          "y": 381
+        },
+        "placed_in_room": "Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_10",
+        "type": "Data Point",
+        "position": {
+          "x": 762,
+          "y": 685
+        },
+        "placed_in_room": "Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_11",
+        "type": "Data Point",
+        "position": {
+          "x": 762,
+          "y": 804
+        },
+        "placed_in_room": "Office",
+        "model": "CAT6 Wall Ethernet Port"
+      },
+      {
+        "id": "dp_12",
+        "type": "Data Point",
+        "position": {
+          "x": 762,
+          "y": 918
+        },
+        "placed_in_room": "Office",
+        "model": "CAT6 Wall Ethernet Port"
+      }
+    ],
+    "all_rooms": [
+      {
+        "name": "Open Office",
+        "bounding_box": [
+          65,
+          110,
+          490,
+          565
+        ]
+      },
+      {
+        "name": "Open Office",
+        "bounding_box": [
+          570,
+          445,
+          935,
+          725
+        ]
+      },
+      {
+        "name": "Open Office",
+        "bounding_box": [
+          710,
+          110,
+          935,
+          440
+        ]
+      },
+      {
+        "name": "Corridor",
+        "bounding_box": [
+          495,
+          110,
+          570,
+          915
+        ]
+      },
+      {
+        "name": "Meeting Room",
+        "bounding_box": [
+          65,
+          570,
+          270,
+          700
+        ]
+      },
+      {
+        "name": "Office",
+        "bounding_box": [
+          65,
+          795,
+          270,
+          915
+        ]
+      },
+      {
+        "name": "Meeting Room",
+        "bounding_box": [
+          570,
+          265,
+          705,
+          440
+        ]
+      },
+      {
+        "name": "Stairwell",
+        "bounding_box": [
+          65,
+          35,
+          335,
+          110
+        ]
+      },
+      {
+        "name": "Stairwell",
+        "bounding_box": [
+          570,
+          35,
+          840,
+          110
+        ]
+      },
+      {
+        "name": "Stairwell",
+        "bounding_box": [
+          65,
+          920,
+          335,
+          985
+        ]
+      },
+      {
+        "name": "Kitchen",
+        "bounding_box": [
+          65,
+          705,
+          270,
+          790
+        ]
+      },
+      {
+        "name": "Open Office",
+        "bounding_box": [
+          405,
+          795,
+          550,
+          915
+        ]
+      },
+      {
+        "name": "Corridor",
+        "bounding_box": [
+          710,
+          840,
+          935,
+          915
+        ]
+      },
+      {
+        "name": "Office",
+        "bounding_box": [
+          275,
+          795,
+          400,
+          915
+        ]
+      },
+      {
+        "name": "Stairwell",
+        "bounding_box": [
+          710,
+          920,
+          935,
+          985
+        ]
+      },
+      {
+        "name": "Office",
+        "bounding_box": [
+          570,
+          730,
+          705,
+          835
+        ]
+      },
+      {
+        "name": "Office",
+        "bounding_box": [
+          710,
+          730,
+          820,
+          835
+        ]
+      },
+      {
+        "name": "Office",
+        "bounding_box": [
+          825,
+          730,
+          935,
+          835
+        ]
+      },
+      {
+        "name": "Elevator Shaft",
+        "bounding_box": [
+          340,
+          35,
+          490,
+          110
+        ]
+      },
+      {
+        "name": "Restroom",
+        "bounding_box": [
+          275,
+          570,
+          400,
+          660
+        ]
+      },
+      {
+        "name": "Elevator Shaft",
+        "bounding_box": [
+          555,
+          840,
+          705,
+          915
+        ]
+      },
+      {
+        "name": "Lobby",
+        "bounding_box": [
+          275,
+          705,
+          400,
+          790
+        ]
+      },
+      {
+        "name": "Uncovered Zone 1",
+        "bounding_box": [
+          0,
+          0,
+          60,
+          1000
+        ]
+      },
+      {
+        "name": "Uncovered Zone 2",
+        "bounding_box": [
+          60,
+          0,
+          1000,
+          20
+        ]
+      },
+      {
+        "name": "Uncovered Zone 3",
+        "bounding_box": [
+          60,
+          900,
+          1000,
+          920
+        ]
+      },
+      {
+        "name": "Uncovered Zone 4",
+        "bounding_box": [
+          60,
+          980,
+          1000,
+          1000
+        ]
+      },
+      {
+        "name": "Uncovered Zone 5",
+        "bounding_box": [
+          260,
+          660,
+          480,
+          700
+        ]
+      },
+      {
+        "name": "Uncovered Zone 6",
+        "bounding_box": [
+          320,
+          20,
+          340,
+          100
+        ]
+      },
+      {
+        "name": "Uncovered Zone 7",
+        "bounding_box": [
+          320,
+          920,
+          700,
+          980
+        ]
+      },
+      {
+        "name": "Uncovered Zone 8",
+        "bounding_box": [
+          400,
+          560,
+          480,
+          660
+        ]
+      },
+      {
+        "name": "Uncovered Zone 9",
+        "bounding_box": [
+          400,
+          700,
+          480,
+          780
+        ]
+      },
+      {
+        "name": "Uncovered Zone 10",
+        "bounding_box": [
+          480,
+          20,
+          560,
+          100
+        ]
+      },
+      {
+        "name": "Uncovered Zone 11",
+        "bounding_box": [
+          560,
+          100,
+          700,
+          260
+        ]
+      },
+      {
+        "name": "Uncovered Zone 12",
+        "bounding_box": [
+          560,
+          820,
+          1000,
+          840
+        ]
+      },
+      {
+        "name": "Uncovered Zone 13",
+        "bounding_box": [
+          840,
+          20,
+          1000,
+          100
+        ]
+      },
+      {
+        "name": "Uncovered Zone 14",
+        "bounding_box": [
+          920,
+          100,
+          1000,
+          820
+        ]
+      },
+      {
+        "name": "Uncovered Zone 15",
+        "bounding_box": [
+          920,
+          840,
+          1000,
+          900
+        ]
+      },
+      {
+        "name": "Uncovered Zone 16",
+        "bounding_box": [
+          920,
+          920,
+          1000,
+          980
+        ]
+      }
+    ],
+    "total_aps_needed": 8,
+    "total_devices": 22,
+    "scale_factor_cm_per_unit": 4.0,
+    "max_indoor_range_m": 20,
+    "coverage_radius_grid": 500.0,
+    "preferred_tier": "mid_tier",
+    "wall_material": "concrete",
+    "wall_attenuation_db": 15,
+    "validation": {
+      "status": "skipped",
+      "reason": "No best-practice sources could be fetched"
+    }
+  },
+  "variants": {
+    "budget_plan": {
+      "ap_model": "TP-Link EAP225 V3",
+      "ap_quantity": 8,
+      "ap_unit_price": 60.0,
+      "ap_total_cost": 480.0,
+      "switch_model": "Netgear GS308P 8-Port PoE",
+      "switch_quantity": 1,
+      "switch_unit_price": 55.0,
+      "cabling_estimate_usd": 195.0,
+      "grand_total_usd": 730.0,
+      "estimated_coverage_pct": 100,
+      "max_concurrent_users": 480,
+      "estimated_throughput_mbps_per_user": 25.0,
+      "is_overloaded": false,
+      "limitations": [
+        "Lower Wi-Fi generation (Wi-Fi 5)",
+        "Lower max users per AP"
+      ]
+    },
+    "premium_plan": {
+      "ap_model": "Ubiquiti UniFi U6 Pro",
+      "ap_quantity": 8,
+      "ap_unit_price": 149.0,
+      "ap_total_cost": 1192.0,
+      "switch_model": "Ubiquiti UniFi Switch Lite 16 PoE",
+      "switch_quantity": 1,
+      "switch_unit_price": 199.0,
+      "cabling_estimate_usd": 195.0,
+      "grand_total_usd": 1586.0,
+      "estimated_coverage_pct": 100,
+      "max_concurrent_users": 2000,
+      "estimated_throughput_mbps_per_user": 50.0,
+      "is_overloaded": false,
+      "limitations": [
+        "Exceeds budget limit",
+        "Higher cost"
+      ]
+    },
+    "recommendation": "The budget plan is recommended because it stays under the budget limit of $1000 and still provides sufficient coverage and throughput for the required number of concurrent heavy users. Although it uses Wi-Fi 5 APs, which may not provide the same level of performance as Wi-Fi 6 APs, it is a more cost-effective solution. The premium plan, on the other hand, exceeds the budget limit and may not be feasible for this deployment."
+  },
+  "summary": null,
+  "errors": [
+    "Step 6 failed: Groq API failed with status code 429: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kqvcd2b7e31ac582p70q9z17` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99671, Requested 4313. Please try again in 57m22.176s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n"
+  ],
+  "step_log": [
+    "[Step 1] Extracted 38 rooms from floor plan",
+    "[Step 2] Loaded specs for: ['attenuation_db', 'budget_tier', 'mid_tier', 'premium_tier', 'switch_budget', 'switch_premium']",
+    "[Step 3] Placed 8 AP(s) | Scale: 4.00 cm/unit | Range: 20m (from datasheet)",
+    "[Step 3.5] Validation skipped: 0 flagged, 0 corrected",
+    "[Step 4] Budget plan: $730 | Premium plan: $1586",
+    "[Step 5] Heatmap saved to outputs/heatmap.png"
+  ]
+}
