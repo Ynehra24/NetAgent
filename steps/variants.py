@@ -84,12 +84,10 @@ def generate_variants(placement_plan: dict, specs: dict, budget_limit: float = 1
     
     log.info(f"Generating variants for {num_aps} AP(s). Expected concurrent users: {total_users}. Budget: ${budget_limit:.0f}")
 
-    # Build a COMPACT prompt (Groq free tier has 12K TPM limit)
-    # Only send essential data, not the full verbose placement plan
+    # Compact prompt (Gemini API limit)
     ap_summary = [{"id": ap["id"], "room": ap["placed_in_room"]} 
                   for ap in placement_plan.get("ap_placements", [])]
     
-    # Only send pricing/specs, not the full raw data
     compact_specs = {}
     for tier in ["budget_tier", "mid_tier", "premium_tier", "switch_budget", "switch_premium"]:
         s = specs.get(tier, {})
@@ -121,7 +119,7 @@ Rules:
 """
 
     client = TextClient()
-    raw = client.generate_text(SYSTEM_PROMPT, user_prompt)  # 70B for quality cost analysis
+    raw = client.generate_text(SYSTEM_PROMPT, user_prompt)
     variants = extract_json_from_markdown(raw)
     
     # Validate expected keys exist
@@ -134,8 +132,7 @@ Rules:
     log.info(f"Budget plan total:  ${b_total:.0f}")
     log.info(f"Premium plan total: ${p_total:.0f}")
 
-    # ── DETERMINISTIC 'best within budget' override ──
-    # Python math, not LLM opinion, decides the recommendation.
+    # Deterministic 'best within budget' override
     if p_total <= budget_limit:
         best = "premium"
         reco_reason = (f"The premium plan (${p_total:.0f}) fits within the ${budget_limit:.0f} budget "

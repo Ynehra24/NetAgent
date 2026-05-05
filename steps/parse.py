@@ -5,7 +5,7 @@ from basefiles.logger import get_logger
 import numpy as np
 from PIL import Image
 
-logger = get_logger(__name__) if 'get_logger' in globals() else None
+logger = get_logger(__name__)
 
 SYSTEM_PROMPT = """
 You are an expert architect analyzing a floor plan image.
@@ -46,7 +46,7 @@ def _detect_building_bounds(image_path: str) -> tuple:
     
     pixels = np.array(img)
     
-    # Find non-white pixels (anything darker than 240/255 is building content)
+    # Find non-white pixels (darker than 240 is building content)
     content_mask = pixels < 240
     
     if not content_mask.any():
@@ -81,11 +81,10 @@ def _detect_building_bounds(image_path: str) -> tuple:
 # VLM Hardening: Room Sanitization
 # ─────────────────────────────────────────────
 
-# RELATIVE thresholds — min_area is computed dynamically from
-# the actual building footprint, not from a fixed grid.
-MIN_ROOM_AREA_FRAC = 0.01   # 1% of BUILDING footprint area
-MAX_ASPECT_RATIO   = 12.0   # reject rooms narrower than 1:12
-MAX_IOU_OVERLAP    = 0.60   # deduplicate rooms with >60% overlap
+# Relative thresholds for room validation
+MIN_ROOM_AREA_FRAC = 0.01   # 1% of building footprint
+MAX_ASPECT_RATIO   = 12.0
+MAX_IOU_OVERLAP    = 0.60
 
 
 def _room_area(bb: List) -> float:

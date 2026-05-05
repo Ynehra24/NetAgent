@@ -133,16 +133,16 @@ with st.sidebar:
     1 · Gemini Vision → Room extraction<br>
     2 · DuckDuckGo → Equipment specs<br>
     3 · RF Algorithm → AP placement<br>
-    4 · Groq Llama → Cost variants<br>
+    4 · Gemini → Cost variants<br>
     5 · FSPL engine → Heatmap render<br>
-    6 · Groq Llama → Executive report
+    6 · Gemini → Executive report
     </div>
     """, unsafe_allow_html=True)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 st.markdown("# 📡 NetAgent — RF Deployment Engine")
-st.markdown("*Deterministic Wi-Fi planning powered by VLM vision + FSPL signal simulation + Groq LLM narration*")
+st.markdown("*Deterministic Wi-Fi planning powered by Gemini VLM vision + FSPL signal simulation + Gemini LLM narration*")
 st.markdown("---")
 
 if not uploaded_file and not run_btn:
@@ -152,7 +152,7 @@ if not uploaded_file and not run_btn:
         ("🏗️", "Upload a floor plan to get started"),
         ("📡", "FSPL-based gradient RF heatmap"),
         ("💰", "Budget vs Premium cost analysis"),
-        ("📝", "Groq executive summary report"),
+        ("📝", "Gemini executive summary report"),
     ]
     for col, (icon, label) in zip([c1, c2, c3, c4], cards):
         with col:
@@ -168,11 +168,11 @@ if not uploaded_file and not run_btn:
 | # | Step | Technology | Description |
 |---|------|-----------|-------------|
 | 1 | **Visual Extraction** | Gemini Vision LLM | Identifies every room and its bounding box from the floor plan image |
-| 2 | **Equipment Specs** | DuckDuckGo + web scrape + Groq RAG | Fetches real AP datasheets; tries up to 2 results before using local DB |
+| 2 | **Equipment Specs** | DuckDuckGo + web scrape + Gemini RAG | Fetches real AP datasheets; tries up to 2 results before using local DB |
 | 3 | **AP Placement** | FSPL + raycasting algorithm | Places exactly 1 AP per functional room; skips corridors, bathrooms, tiny zones |
-| 4 | **Cost Variants** | Groq Llama 3.3 70B | Generates budget & premium plans with overload detection |
+| 4 | **Cost Variants** | Gemini 2.5 Pro | Generates budget & premium plans with overload detection |
 | 5 | **RF Heatmap** | PIL + NumPy signal grid | Renders a continuous Green→Red RSSI gradient over the floor plan |
-| 6 | **Executive Summary** | Groq Llama 3.3 70B | Produces a professional markdown deployment report |
+| 6 | **Executive Summary** | Gemini 2.5 Pro | Produces a professional markdown deployment report |
     """)
 
 elif run_btn and not uploaded_file:
@@ -257,7 +257,7 @@ elif run_btn and uploaded_file:
         st.stop()
 
     # ── Step 4 ────────────────────────────────────────────────────────────────
-    progress.progress(55, text="Step 4/6 · Generating cost variants via Groq…")
+    progress.progress(55, text="Step 4/6 · Generating cost variants via Gemini…")
     try:
         from steps.variants import generate_variants
         with st.spinner("💰 Computing budget & premium plans…"):
@@ -291,10 +291,10 @@ elif run_btn and uploaded_file:
         log_status(5, f"Failed — `{e}`", ok=False)
 
     # ── Step 6 ────────────────────────────────────────────────────────────────
-    progress.progress(88, text="Step 6/6 · Generating executive summary via Groq…")
+    progress.progress(88, text="Step 6/6 · Generating executive summary via Gemini…")
     try:
-        from tools.groq_summarizer import generate_summary
-        with st.spinner("📝 Writing report with Groq Llama 3.3 70B…"):
+        from tools.summarizer import generate_summary
+        with st.spinner("📝 Writing report with Gemini 2.5 Pro…"):
             summary = generate_summary(state, output_path="outputs/summary_report.md")
         state["summary"] = summary
         log_status(6, f"Executive summary generated ({len(summary):,} chars)")
@@ -427,7 +427,7 @@ elif run_btn and uploaded_file:
                 file_name="deployment_report.md", mime="text/markdown"
             )
         else:
-            st.warning("Summary generation failed (Groq rate limit). Try re-running in 30 seconds.")
+            st.warning("Summary generation failed (Gemini API error). Try re-running in 30 seconds.")
 
     # Tab 4 — Raw JSON
     with tab4:

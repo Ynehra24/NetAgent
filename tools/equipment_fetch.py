@@ -34,12 +34,10 @@ def scrape_manual(url: str) -> str:
         resp.raise_for_status()
         
         soup = BeautifulSoup(resp.text, 'html.parser')
-        # Remove script and style elements
         for script in soup(["script", "style", "nav", "footer"]):
             script.extract()
             
         text = soup.get_text(separator=' ', strip=True)
-        # Truncate text to avoid blowing up the LLM context limits
         return text[:4000]
     except Exception as e:
         log.warning(f"Failed to scrape {url}: {e}")
@@ -82,7 +80,7 @@ def fetch_from_api(tier: str) -> dict | None:
                 continue
             
             # Use LLM to extract factual data from the scraped page
-            log.info(f"Extracting specs from result {idx+1} via Groq LLM: {url}")
+            log.info(f"Extracting specs from result {idx+1} via Gemini: {url}")
             llm_client = TextClient()
             response_text = llm_client.generate_text(
                 system_prompt=SYSTEM_PROMPT,
@@ -117,7 +115,6 @@ def get_specs() -> dict:
     local = load_local_db()
     specs = {}
     
-    # Copy configuration objects that don't need fetching
     specs["attenuation_db"] = local.get("attenuation_db", {})
     
     tiers = ["budget_tier", "mid_tier", "premium_tier",
@@ -130,7 +127,6 @@ def get_specs() -> dict:
 
         live = fetch_from_api(tier)
         if live:
-            # We don't merge, we let the real-world data completely overwrite the DB
             specs[tier] = live
             log.info(f"Specs for {tier}: using live scraped RAG data")
         else:

@@ -7,9 +7,7 @@ from basefiles.logger import get_logger
 
 log = get_logger(__name__)
 
-# Minimum usable signal threshold in dBm (standard Wi-Fi cut-off)
 MIN_SIGNAL_DBM = -70.0
-# Standard indoor door width in cm used as scale anchor
 DOOR_WIDTH_CM = 81.0
 
 # Room types that do NOT need their own AP or data point.
@@ -25,9 +23,8 @@ EXCLUDED_ROOM_KEYWORDS = [
     "uncovered",
 ]
 
-# Minimum area (as fraction of building footprint) for an uncovered zone
-# to deserve its own AP. Zones smaller than this get spillover only.
-MIN_ZONE_AREA_FRAC = 0.03  # 3% of building footprint
+# Minimum area fraction for an uncovered zone to get its own AP
+MIN_ZONE_AREA_FRAC = 0.03
 
 JUSTIFICATION_PROMPT = """
 You are a certified wireless network engineer. You have been given the mathematical output 
@@ -151,7 +148,6 @@ def place_one_ap_per_room(centroids: List[Dict], max_range_m: float, scale_facto
     placements = []
     ap_id = 0
     
-    # Coverage radius on the grid (used for overlap check)
     range_cm = max_range_m * 100
     coverage_radius_grid = range_cm / scale_factor
     
@@ -165,7 +161,6 @@ def place_one_ap_per_room(centroids: List[Dict], max_range_m: float, scale_facto
         if "uncovered zone" in room["name"].lower():
             bb = room.get("bounding_box", [0, 0, 0, 0])
             zone_area = (bb[2] - bb[0]) * (bb[3] - bb[1])
-            # Building footprint ≈ 1000×1000 = 1,000,000
             if zone_area < 1000000 * MIN_ZONE_AREA_FRAC:
                 log.info(f"Skipping '{room['name']}' — tiny edge zone (area={zone_area}, min={1000000 * MIN_ZONE_AREA_FRAC:.0f})")
                 continue
@@ -224,8 +219,7 @@ def place_one_ap_per_room(centroids: List[Dict], max_range_m: float, scale_facto
             )
             wall_penalty = walls * wall_attenuation_db
             
-            # Check if signal is still above -70 dBm at the other room's center
-            # Using simplified path loss: received = EIRP - FSPL(dist) - wall_penalty
+            # FSPL: received = EIRP - FSPL(dist) - wall_penalty
             if dist_m > 0.1:
                 fspl = 20 * math.log10(dist_m) + 20 * math.log10(5000) + 32.44 - 28
                 received_dbm = eirp - fspl - wall_penalty
@@ -348,7 +342,7 @@ def get_llm_justifications(placements: List[Dict], scale_factor: float,
     """
     try:
         client = TextClient()
-        # Send compact AP data (Groq free tier has TPM limit)
+        # Send compact AP data (Gemini free tier has limits)
         compact = [{"id": p["id"], "room": p["placed_in_room"], 
                     "pos": p["position"], "covers": p["covers_rooms"]} 
                    for p in placements]

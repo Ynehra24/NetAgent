@@ -77,7 +77,6 @@ def _scrape_url(url: str) -> str:
             tag.extract()
 
         text = soup.get_text(separator=" ", strip=True)
-        # Truncate to keep within LLM context limits
         return text[:3000]
     except Exception as e:
         log.warning(f"Failed to scrape {url}: {e}")
@@ -113,7 +112,6 @@ def _search_and_scrape(queries: list[str], max_results_per_query: int = 2) -> tu
                 all_urls.append(url)
 
     combined = "\n\n".join(all_text)
-    # Cap total to ~8000 chars so we don't exceed Groq's TPM limit
     return combined[:8000], all_urls
 
 

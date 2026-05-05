@@ -10,7 +10,7 @@ from steps.plan import generate_placement_plan
 from steps.variants import generate_variants
 from steps.visualize import generate_heatmap
 from steps.validate import validate_placement
-from tools.groq_summarizer import generate_summary
+from tools.summarizer import generate_summary
 
 # ── Shared state dict (accumulates results across all steps) ──────────────────
 state = {
@@ -127,8 +127,8 @@ def run_pipeline():
         print(f"❌ Step 5 failed: {e}")
         return state
 
-    # ── STEP 6: Groq Summary Report ───────────────────────────────
-    print("\n--- STEP 6: Generating Executive Summary (Groq) ---")
+    # ── STEP 6: Gemini Summary Report ───────────────────────────────
+    print("\n--- STEP 6: Generating Executive Summary (Gemini) ---")
     try:
         summary = generate_summary(state, output_path="outputs/summary_report.md")
         state["summary"] = summary

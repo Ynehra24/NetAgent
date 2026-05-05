@@ -6,19 +6,17 @@ from basefiles.logger import get_logger
 
 log = get_logger(__name__)
 
-# ── Signal Thresholds for Color Mapping ──
-# These define the professional RF heatmap gradient
-EXCELLENT_DBM = -50.0   # Green — strong signal
-GOOD_DBM      = -60.0   # Yellow-green
-FAIR_DBM      = -65.0   # Yellow-orange
-WEAK_DBM      = -70.0   # Red — minimum usable
+# Signal Thresholds for Color Mapping
+EXCELLENT_DBM = -50.0
+GOOD_DBM      = -60.0
+FAIR_DBM      = -65.0
+WEAK_DBM      = -70.0
 
-# Infrastructure device colors
-ROUTER_COLOR     = (220, 50, 50, 255)       # Red
-SWITCH_COLOR     = (50, 50, 220, 255)       # Blue
-DATA_POINT_COLOR = (50, 150, 50, 255)       # Green
+ROUTER_COLOR     = (220, 50, 50, 255)
+SWITCH_COLOR     = (50, 50, 220, 255)
+DATA_POINT_COLOR = (50, 150, 50, 255)
 
-# AP dot colors per index
+# AP dot colors
 AP_DOT_COLORS = [
     (66, 133, 244, 255),
     (234, 67, 53, 255),
