@@ -360,7 +360,7 @@ APs: {json.dumps(compact)}
 
 Write a one-paragraph justification for each AP.
 """
-        raw = client.generate_text(JUSTIFICATION_PROMPT, user_prompt)
+        raw = client.generate_text(JUSTIFICATION_PROMPT, user_prompt, fast=True)
         data = extract_json_from_markdown(raw)
         return data.get("justifications", {})
     except Exception as e:

@@ -121,7 +121,7 @@ Rules:
 """
 
     client = TextClient()
-    raw = client.generate_text(SYSTEM_PROMPT, user_prompt)
+    raw = client.generate_text(SYSTEM_PROMPT, user_prompt)  # 70B for quality cost analysis
     variants = extract_json_from_markdown(raw)
     
     # Validate expected keys exist
@@ -134,9 +134,32 @@ Rules:
     log.info(f"Budget plan total:  ${b_total:.0f}")
     log.info(f"Premium plan total: ${p_total:.0f}")
 
+    # ── DETERMINISTIC 'best within budget' override ──
+    # Python math, not LLM opinion, decides the recommendation.
+    if p_total <= budget_limit:
+        best = "premium"
+        reco_reason = (f"The premium plan (${p_total:.0f}) fits within the ${budget_limit:.0f} budget "
+                       f"and provides the highest performance. Recommended.")
+        log.info(f"Premium plan fits within budget (${p_total:.0f} ≤ ${budget_limit:.0f}) → recommending premium")
+    elif b_total <= budget_limit:
+        best = "budget"
+        reco_reason = (f"The budget plan (${b_total:.0f}) is the best option within the ${budget_limit:.0f} budget. "
+                       f"The premium plan (${p_total:.0f}) exceeds the limit.")
+        log.info(f"Only budget plan fits within budget (${b_total:.0f} ≤ ${budget_limit:.0f}) → recommending budget")
+    else:
+        best = "budget"
+        reco_reason = (f"Neither plan fits strictly within ${budget_limit:.0f}. "
+                       f"The budget plan (${b_total:.0f}) is the closest option; consider negotiating or phasing the rollout.")
+        log.warning(f"Both plans exceed budget (budget=${b_total:.0f}, premium=${p_total:.0f})")
+
+    variants["recommended_plan"] = best
+    variants["recommendation"] = reco_reason
+
+    # Flag plans that exceed budget
     if b_total > budget_limit:
-        log.warning(f"Budget plan (${b_total:.0f}) exceeds user's stated limit (${budget_limit:.0f})")
-        variants["budget_plan"]["_warning"] = f"Exceeds budget limit of ${budget_limit:.0f}"
+        variants["budget_plan"].setdefault("limitations", []).append(f"Exceeds budget limit of ${budget_limit:.0f}")
+    if p_total > budget_limit:
+        variants["premium_plan"].setdefault("limitations", []).append(f"Exceeds budget limit of ${budget_limit:.0f}")
 
     log.info("=== Variants Generation Complete ===")
     return variants
